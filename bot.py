@@ -14,6 +14,7 @@ async def getctf(interaction):
         return
     await interaction.response.send_message("Joining VC", ephemeral=True)
     for voicechannel in interaction.guild.voice_channels:
+        await voicechannel.set_permissions(interaction.guild.default_role, connect=False)
         voiceclient = await voicechannel.connect()
         for member in voicechannel.members:
             if member.bot:
